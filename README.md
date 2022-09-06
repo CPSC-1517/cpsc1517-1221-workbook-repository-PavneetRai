@@ -1,6 +1,6 @@
 # CPSC1517 Fall 2022 Term Workbook
 
-## your name here
+## Pavneet Rai
 
 ## your Github Account id
 
