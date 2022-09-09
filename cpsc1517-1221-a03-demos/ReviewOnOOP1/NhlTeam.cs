@@ -102,13 +102,65 @@ namespace ReviewOnOOP1
             get => (Wins * 2) + Overtimelosses;
 
         }
-         public NhlTeam(NhlConference conference, NhlDivision division, string name, string city)
-        {
-            Conference = conference;
-            Division = division;    
-            Name = name;
-            this.City = city;
+        //define an auto implemented property with a private set for players
 
+        public List<NhlRoster> Players { get; private set; }
+
+        private const int MaxPlayers = 23;
+        public void AddPlayer(NhlRoster currentPlayer)
+        {
+            if (Players.Count >= MaxPlayers)
+            {
+                throw new ArgumentException("Roster is full. Remove a player first");
+
+            }
+            Players.Add(currentPlayer);
+        }
+        public void RemovePlayer(int playerNo)
+        {
+            //Remove from the players list the player with the matching playerNo.
+            //Throw can Arguement exception if the player number does not exist 
+            bool foundPlayer = false;
+            int playerindex = -1;
+            for (int index = 0; index < Players.Count; index++)
+            {
+                if (Players[index].playerNumber == playerNo)
+                {
+                    foundPlayer = true;
+                    playerindex = index;
+                    index = Players.Count; //stop loop
+                }
+            }
+            if(!foundPlayer)
+            {
+                throw new ArgumentException($"player {playerNo}not found");
+            }
+                
+
+            
+        }
+        public NhlTeam(NhlConference conference, NhlDivision division, string name, string city,List<NhlRoster> players)
+        {
+            //create a new list of roster if none is provided 
+            if(players == null)
+            {
+                players = new List<NhlRoster>();
+
+            }
+            else
+            {
+                Players = players;
+            }
+            Conference = conference;
+            Division = division;
+            Name = name;
+            City = city;
+        }
+         public NhlTeam(NhlConference conference, NhlDivision division, string name, string city)
+
+        {
+          
+            Players = new List<NhlRoster>();
             Gamesplayed = 0;
             Wins = 0;
             Lossess = 0;
