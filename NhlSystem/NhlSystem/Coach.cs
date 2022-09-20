@@ -11,13 +11,18 @@ namespace NhlSystem
     public class Coach : Person //<- this is inheritance. coaach will in herit all propteries from person class 
     {
         //Define a auto-implenmented property for HireDate 
-        public DateTime HireDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         //define contructor that passes FullName to the Person base class 
 
-        public Coach(string fullName, DateTime hireDate) : base(fullName)
+        public Coach(string fullName, DateTime startDate) : base(fullName)
         {
-            HireDate = hireDate;    
+            StartDate = startDate;    
+        }
+
+        public override string ToString()
+        {
+            return $"{FullName}, {StartDate}";
         }
     }
 }

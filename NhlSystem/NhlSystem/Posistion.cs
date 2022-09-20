@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NhlSystem
 {
-    public enum Posistion
+    public enum Position
     {
         LW,
         RW,

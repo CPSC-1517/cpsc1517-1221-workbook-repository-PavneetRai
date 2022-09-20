@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using NhlSystem;
+using System.Runtime.InteropServices;
 
 Console.WriteLine("Hello, World!");
 
@@ -65,3 +66,24 @@ catch (ArgumentException ex)
 {
     Console.WriteLine(ex.Message); //The output should be "Full Name is required" 
 }
+
+//test creating a new team 
+//Create a new coach for the team 
+//create a start date 
+DateTime startDate = DateTime.Parse("2021-09-02");
+Coach oilersCoach = new Coach("Jay Woodcroft", startDate);
+
+//Create a new Team 
+Team oilersTeam = new Team("", oilersCoach);
+
+//Ad 3 players to the team 
+Player player1 = new Player("Connor McDavid", Position.C, 97);
+Player player2 = new Player("Evander Kane", Position.LW, 91);
+Player player3 = new Player("Leeon Draissaitl", Position.C, 29);
+
+oilersTeam.AddPlayer(player1);
+oilersTeam.AddPlayer(player2);
+oilersTeam.AddPlayer(player3);
+
+
+
