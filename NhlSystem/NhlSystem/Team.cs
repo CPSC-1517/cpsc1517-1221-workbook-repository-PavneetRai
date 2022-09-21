@@ -93,7 +93,7 @@ namespace NhlSystem
             }
         }
 
-        public Team(Coach coach,  string teamName)
+        public Team(string teamName, Coach coach  )
         {
             if(coach == null)
             {
@@ -105,7 +105,7 @@ namespace NhlSystem
         }
         public override string ToString()
         {
-            return $"{Coach},{TeamName}";
+            return $"{TeamName},{Coach}";
         }
     }
 }
