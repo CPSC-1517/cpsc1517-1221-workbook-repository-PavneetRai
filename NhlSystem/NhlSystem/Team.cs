@@ -84,8 +84,8 @@ namespace NhlSystem
                 return Players
                     .Select(player => player.Points)
                     .Sum();
-                return Players
-                    .Sum(currentPlayer => currentPlayer.Points);
+                //return Players
+                //    .Sum(currentPlayer => currentPlayer.Points);
             }
         }
         
