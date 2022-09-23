@@ -35,38 +35,60 @@ namespace NhlSystem
             }
             //validate that the new player PrimaryNo is not already in use
             //this is a sequential search
-            bool primaryNoFound = false;
+            //bool primaryNoFound = false;
 
-            foreach(Player currentPlayer in Players )
-            {
-                if(currentPlayer.PrimaryNo == newPlayer.PrimaryNo)
-                {
-                    primaryNoFound = true;
-                    break; //exit foreach statement
-                }
-            }
+            //foreach(Player currentPlayer in Players )
+            //{
+            //    if(currentPlayer.PrimaryNo == newPlayer.PrimaryNo)
+            //    {
+            //        primaryNoFound = true;
+            //        break; //exit foreach statement
+            //    }
+            //}
+            //if(primaryNoFound)
+            //{
+            //    throw new ArgumentException("PrimaryNo is already in use by another player");
+            //}
+            ////add the new player to the team 
+            //Players.Add(newPlayer);
+
+            //validate that the new player PrimaryNo is not already in use using linQ 
+            bool primaryNoFound = Players.Any(currentPlayer => currentPlayer.PrimaryNo == newPlayer.PrimaryNo);
             if(primaryNoFound)
             {
-                throw new ArgumentException("PrimaryNo is already in use by another player");
+                throw new ArgumentException("Primary NO is already in use");
             }
-            //add the new player to the team 
-            Players.Add(newPlayer);
+
         }
 
         //define a computed-property to return the total of Points of all players 
+        //public int TotalPlayerPoints
+        //{
+        //    get
+        //    {
+        //        int totalPoints = 0; 
+        //        foreach(Player currentPlayer in Players)
+        //        {
+        //            totalPoints += currentPlayer.Points;
+        //        }
+        //        return totalPoints;
+        //    }
+
+        //}
+        //define a computed-property to return the total of Points of all players using linQ funtion for each 
         public int TotalPlayerPoints
         {
             get
             {
-                int totalPoints = 0; 
-                foreach(Player currentPlayer in Players)
-                {
-                    totalPoints += currentPlayer.Points;
-                }
-                return totalPoints;
+                //two ways to write 
+                return Players
+                    .Select(player => player.Points)
+                    .Sum();
+                return Players
+                    .Sum(currentPlayer => currentPlayer.Points);
             }
-            
         }
+        
 
         //define a full implemented property with a backing feild for a teamname 
         private string _teamName = string.Empty;
