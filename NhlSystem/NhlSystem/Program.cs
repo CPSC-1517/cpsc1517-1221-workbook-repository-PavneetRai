@@ -140,7 +140,7 @@ static void CreateTeamJsonFile()
 
     Player player1 = new Player("Connor McDavid", Position.C, 97);
     Player player2 = new Player("Evander Kane", Position.LW, 91);
-    Player player3 = new Player("Leeon Draissaitl", Position.C, 29);
+    Player player3 = new Player("Leeon Dhaissaitl", Position.C, 29);
     oilersTeam.AddPlayer(player1);
     oilersTeam.AddPlayer(player2);
     oilersTeam.AddPlayer(player3);
