@@ -66,6 +66,59 @@ namespace NhlSystem
         {
             return $"{Position}, {PrimaryNo}, {Goals}, {Assists},{Points}";
         }
+        public static Player ParseCsv(string line)
+        {
+            //define a constant for the Delimiiter character 
+            const char Delimiter = ',';
+            //Split the line into an array where each value is seperated by a Delimiter 
+            string[] tokens = line.Split(Delimiter);
+            /*The columns int he lines are in this order: 
+             * 0) Name 
+             * 1) Number
+             * 2) Position 
+             * 3) Goals
+             * 4) Assist
+             * 5) Points
+            */
+            //verify that there are 6 elements in the array 
+            if (tokens.Length != 6)
+            {
+                throw new FormatException($"CSV line must contain exactly 6 values {line}");
+            }
+            string playerName = tokens[0];
+            int playerNumber = int.Parse(tokens[1]);
+            Position position = (Position)Enum.Parse(typeof(Position), tokens[2]); //to parse an enum //Type casting to transform one to another 
+            int goals = int.Parse(tokens[3]);
+            int assists = int.Parse(tokens[4]);
+            //
+            return new Player
+                (
+                    fullName: playerName,
+                    primaryNo: playerNumber,
+                    position: position,
+                    goals: goals,
+                    assists: assists
+                );
+
+        }
+        public static bool TryParse(string line, out Player player)// when you call method and use "out" it does not make a copy 
+        {
+            bool success = false;
+            try
+            {
+                player = ParseCsv(line);
+                success = true;
+            }
+            catch (FormatException ex)
+            {
+                throw new FormatException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Player Tryparse exception {ex.Message}");
+            }
+            return success;
+        }
 
     }
 }
