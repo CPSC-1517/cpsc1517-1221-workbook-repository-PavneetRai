@@ -16,13 +16,13 @@ namespace WestwindSystem.Entity
         public int Id { get; set; }
         [Required(ErrorMessage ="CatergoryName is required")]
         [MaxLength(15, ErrorMessage ="CategoryName max length is 15")]
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } = String.Empty;
         [Column(TypeName="ntext")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [Column(TypeName ="varbinary")]
-        public byte[] Picture { get; set; }
+        public byte[]? Picture { get; set; }
 
-        public string PictureMimeType { get; set; }
+        public string? PictureMimeType { get; set; }
         
 
     }
